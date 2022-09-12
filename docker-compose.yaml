@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  go_server:
+    container_name: go_server
+    build:
+      context: ./go
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - 8080:8080
+    volumes:
+      - type: bind
+        source: ./go/coverage
+        target: /app/coverage
+      - type: bind
+        source: ./go/log
+        target: /tmp/log/app
+    tty: true
